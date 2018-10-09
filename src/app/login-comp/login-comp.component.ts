@@ -25,8 +25,15 @@ export class LoginCompComponent implements OnInit {
   logIn(){
     this.apollo.watchQuery({ query: Query.Login })
     .valueChanges
-    .map((result: any) => result.data.users).subscribe((data) => {
-      console.log(data);
+    .map((result: any) => result.data).subscribe((data) => {
+      
+      /* Condition for match goes here*/
+     
+      if(data.loginCheck && data.loginCheck.length > 0 )
+      {
+        alert('Logged In')
+      }
+  
     })
   }
 
